@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Plan Your Journey</title>
+</head>
+
+<style>
+    .hero-section {
+        background-image: url('https://images.unsplash.com/photo-1505832018823-50331d70d237?q=80&w=1508&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-size: cover;
+        height: 200px; 
+        position: relative;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.5); 
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+</style>
+</head>
+
+<body class="font-sans bg-gray-100" style="font-family:'Titillium Web', sans-serif; font-optical-sizing: auto;">
+
+
+<section class="hero-section">
+    <div class="overlay">
+        <div class="text-center">
+            <h1 class="text-4xl font-semibold text-gray-200">Plan your journey</h1>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-16">
+    <div class="max-w-6xl mx-auto px-4">
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Plan Trips Here</h2>
+
+    
+        <form class="bg-white shadow-md rounded-lg p-6" method="post">
+            {% csrf_token %}
+              
+         
+            <div class="mb-4">
+                <label for="departFrom" class="block text-sm font-medium text-gray-700">Depart From</label>
+                <input type="text" id="departFrom" name="departure" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+            </div>
+
+       
+            <div class="mb-4">
+                <label for="destination" class="block text-sm font-medium text-gray-700">Destination</label>
+                <input type="text" id="destination" name="destination" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+            </div>
+
+           
+            <div class="mb-4 grid grid-cols-2 gap-4">
+                <div>
+                    <label for="startDate" class="block text-sm font-medium text-gray-700">Start Date</label>
+                    <input type="date" id="startDate" name="startdate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="startTime" class="block text-sm font-medium text-gray-700">Start Time</label>
+                    <input type="time" id="startTime" name="starttime" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+                </div>
+            </div>
+
+          
+            <div class="mb-4 grid grid-cols-2 gap-4">
+                <div>
+                    <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
+                    <input type="date" id="endDate" name="enddate" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="endTime" class="block text-sm font-medium text-gray-700">End Time</label>
+                    <input type="time" id="endTime" name="endtime" class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500">
+                </div>
+            </div>
+
+            
+            <div class="mb-4">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Trip Name</span>
+                <label for="groupTrip" class="inline-flex items-center mr-4">
+                    <input type="checkbox" id="groupTrip" name="grouptrip" class="form-checkbox text-blue-500 focus:ring-blue-500 h-4 w-4">
+                    <span class="ml-2 text-sm text-gray-800">Group Trip</span>
+                </label>
+                <label for="soloTrip" class="inline-flex items-center">
+                    <input type="checkbox" id="soloTrip" name="solotrip" class="form-checkbox text-blue-500 focus:ring-blue-500 h-4 w-4">
+                    <span class="ml-2 text-sm text-gray-800">Solo Trip</span>
+                </label>
+            </div>
+
+            <button type="submit" class="bg-teal-700 rounded-full px-8 pt-3 pb-4 shadow-lg text-xl text-white block mx-auto hover:bg-teal-900">Plan Journey</button>
+
+        </form>
+
+    </div>
+</section>
+
+</body>
+
+</html>
