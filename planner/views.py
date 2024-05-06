@@ -8,6 +8,8 @@ from .forms import *
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from datetime import datetime
+
+from .models import Tourguide
 # Create your views here.
 def signup(request):
 
@@ -157,6 +159,24 @@ def logout_user(request):
      logout(request)
      messages.success(request,'Youre logged out!')
      return redirect('signup')
+
+
+
+
+def tourguide_list(request):
+    tourguides = TourGuide.objects.all()
+
+    # Get the search query from the request
+    search_query = request.GET.get('search')
+
+    if search_query:
+        # Filter tour guides by location if search query is provided
+        tourguides = tourguides.filter(location__icontains=search_query)
+
+    context = {
+        'tourguide': tourguides
+    }
+    return render(request, 'tourguide.html', context=context)
 
 
 

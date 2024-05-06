@@ -9,39 +9,36 @@
 </head>
 <body>
 
+<div style="padding: 20px;">
+    <h2>Your Travel List</h2>
+                   <h6>Search Best Places</h6>
+</div>
 
-
-    <div style="padding: 20px;">
-        <h1>Buy Your Property</h1>
+<div style="padding: 10px;">
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by location or name" style="font-size: 0.9rem;">
+        <button class="btn btn-primary" onclick="search()">Search</button>
     </div>
-
-    
-
-    <div style="padding: 10px;">
-        <h> </h>
-    </div>
-
-    <style>
-        .card-container {
-            display: flex;
-            justify-content: justify;
-            /* Align items to the start of the flex container */
-            flex-wrap: wrap;
-        }
-        .custom-wide {
-            max-width: 1865px; /* Define your custom width here */
-        }
+</div>
 
 
-        
-    </style>
-
+<style>
+    .card-container {
+        display: flex;
+        justify-content: justify;
+        /* Align items to the start of the flex container */
+        flex-wrap: wrap;
+    }
+    .custom-wide {
+        max-width: 1865px; /* Define your custom width here */
+    }
+</style>
 
 {% load static %}
 
 <div class="container-lg custom-wide shadow-lg">
-    <div class="d-flex justify-content-center"> <!-- Center align the card-container -->
-        <div class="card-container">
+    <div class="d-flex justify-content-center">
+        <div class="card-container" id="cardContainer">
             {% for b in tourguide %}
             <div class="card mx-2 mb-3" style="max-width: 22rem;">
                 <div class="card-image-container" style="height: 200px; width: 351px; overflow: hidden;">
@@ -51,9 +48,7 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5 class="card-title mb-0">{{ b.name }}</h5>
-                        <!-- <p class="card-text mb-0">BDT {{ b.price }}/=</p> -->
                     </div>
-
                     <h6 class="card-subtitle mb-2 text-muted">{{ b.location }}</h6>
                     <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; max-height: 100px;">
                         {{b.description }}</p>
@@ -67,12 +62,30 @@
     </div>
 </div>
 
+<script>
+    function search() {
+        var input, filter, cards, cardContainer, card, title, location, i;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("cardContainer");
+        cards = cardContainer.getElementsByClassName("card");
 
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".card-title");
+            location = cards[i].querySelector(".card-subtitle");
+
+            if (title.innerText.toUpperCase().indexOf(filter) > -1 || location.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>    
-
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
